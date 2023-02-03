@@ -1,0 +1,4 @@
+[core]
+    remote = data-registry
+['remote "data-registry"']
+    url = gdrive://1dvQU2I3usATeNlr1Lu4_KXrdpqjrwdWH/data-registry/car-price
