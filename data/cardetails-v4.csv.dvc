@@ -1,0 +1,4 @@
+outs:
+- md5: 36ddae22961abfd2b06af623b0723a25
+  size: 352832
+  path: cardetails-v4.csv
