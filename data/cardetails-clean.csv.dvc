@@ -1,0 +1,4 @@
+outs:
+- md5: 271af72e4b543578f23f5db8b2572f9f
+  size: 396497
+  path: cardetails-clean.csv

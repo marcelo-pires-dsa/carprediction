@@ -34,6 +34,10 @@ pkgs <- c("plotly", #plataforma gráfica
           "Hmisc", # matriz de correlações com p-valor
           "readxl",
           "writexl", # importar e escrever arquivo Excel
-           "validate") # Data validation
+          "validate",
+          "rmarkdown",
+          "tinytex") # Data validation
 
 pkginstall(pkgs)
+
+tinytex::install_tinytex()

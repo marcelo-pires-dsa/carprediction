@@ -1,0 +1,34 @@
+---
+output:
+  pdf_document:
+    keep_tex: true
+    toc: true
+    number_sections: true
+    toc_deph: 2
+    df_print: tibble
+    citation_package: biblatex
+bibliography: report.bib
+geometry: margin=1in
+documentclass: article
+---
+---
+title: "Car price prediction"
+author: "Marcelo da Silva Pires"
+date: ""
+output: pdf_document
+---
+
+```{r setup, include = FALSE}
+knitr:opts_chunk$set(echo = TRUE)
+```
+## Resumop
+
+# Introdução
+
+# Materiais e métodos
+
+# Resultados e Discussão
+
+# Conclusão
+
+# Referências
