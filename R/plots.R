@@ -4,7 +4,7 @@ library(ggrepel)
 scatter_plot <- function(dataset, point_x, point_y , label_x, label_y, save = T, plot_title, plot_file, plot_path){
   dataset %>%
     ggplot() +
-    geom_point(aes(x = point_x, y = point_x),
+    geom_point(aes(x = point_x, y = point_y),
              color = "darkorchid",
              size = 3) +
     geom_smooth(aes(x = point_x, y = point_y),
@@ -19,13 +19,16 @@ scatter_plot <- function(dataset, point_x, point_y , label_x, label_y, save = T,
     theme_bw()
 }
 
-#TODO: FIX
-histogram <- function(dataset,point_x){
+#TODO: Better name for point_x parameter
+histogram <- function(dataset, point_x, label_x, label_y){
   dataset %>%
     ggplot(aes(x=point_x)) +
     geom_histogram(aes(y=after_stat(density)),
                     binwidth = .5,
-                    colour="black", fill="white") +
+                    colour="cond", fill="white") +
+    labs(x = label_x,
+        y = label_y,
+        title = plot_title)
     geom_density(alpha=.2, fill="#FF6666")
 
 }

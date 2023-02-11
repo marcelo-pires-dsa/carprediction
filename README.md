@@ -28,7 +28,7 @@ Todos os artefatos do projetos são armazenados no Git, desta forma temos a rast
 - Versionamento dos conjuntos de dados
 Os datasets são versionados utilizando a ferramenta DVC que utiliza o Git como camada de controle de versão, utilizando-se um armezamento remoto.
 
-- **nome**: `insident/data-registry`
+- **nome**: `car-price/data-registry`
 - **identificador**: `1dvQU2I3usATeNlr1Lu4_KXrdpqjrwdWH` (Google drive)
 
 ### Registrando um conjundo de dados
