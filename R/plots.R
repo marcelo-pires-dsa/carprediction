@@ -14,13 +14,13 @@ scatter_plot <- function(dataset, point_x, point_y , label_x, label_y, save = T,
               se = FALSE,
               size = 1.3) +
     labs(x = label_x,
-        y = label_y,
-        title = paste(plot_title)) +
+         y = label_y,
+         title = plot_title) +
     theme_bw()
 }
 
 #TODO: Better name for point_x parameter
-histogram <- function(dataset, point_x, label_x, label_y){
+histogram <- function(dataset, point_x, label_x, label_y, plot_title){
   dataset %>%
     ggplot(aes(x=point_x)) +
     geom_histogram(aes(y=after_stat(density)),

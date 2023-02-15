@@ -1,0 +1,15 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: Rscript.exe .\pre-proccess.R .\data\cardetails-v4.csv .\data\cardetails-clean.csv
+    deps:
+    - path: .\data\cardetails-v4.csv
+      md5: 36ddae22961abfd2b06af623b0723a25
+      size: 352832
+    - path: .\pre-proccess.R
+      md5: 3be3e4d29e4c3402b56e95b3065b6526
+      size: 355
+    params:
+      params.yaml:
+        source_data_file: .\data\cardetails-v4.csv
+        target_data_file: .\data\cardetails-clean.csv
