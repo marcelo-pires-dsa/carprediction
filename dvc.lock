@@ -14,13 +14,15 @@ stages:
         source_data_file: .\data\cardetails-v4.csv
         target_data_file: .\data\cardetails-clean.csv
   install-packages:
-    cmd: Rscript.exe ./install.R
+    cmd:
+    - Rscript.exe ./install.R
+    - Rscript.exe ./install.dev.R
     deps:
     - path: ./install.R
       hash: md5
-      md5: 2028dd058ae2d94c450214335af589fc
-      size: 1508
+      md5: dfce1cec2e4c1db65385dbc4f80dd9e8
+      size: 1556
     - path: ./install.dev.R
       hash: md5
-      md5: 3bd43ecbcb7a7d6bbee62a789b03a874
-      size: 179
+      md5: 01288d08233fbda899f4960453964869
+      size: 190

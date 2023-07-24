@@ -29,7 +29,7 @@ stages:
     deps:
       - ./train.R
     metrics:
-      - metrics.yaml
+      - ./output/metrics.yaml
     outs:
       - output/models/${model_name}:
           cache: false
