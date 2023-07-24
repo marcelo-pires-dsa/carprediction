@@ -9,6 +9,7 @@ pkgs <- c("plotly", #plataforma gráfica
           "knitr",
           "kableExtra", #formatação de tabelas
           "splines",
+          "reshape2",
           "PerformanceAnalytics",
           "correlation",
           "see",
@@ -34,9 +35,14 @@ pkgs <- c("plotly", #plataforma gráfica
           "Hmisc", # matriz de correlações com p-valor
           "readxl",
           "writexl", # importar e escrever arquivo Excel
-          "validate",
+          "validate", # Data validation
           "rmarkdown",
-          "tinytex") # Data validation
+          "tinytex",
+          "multirow", # Dependencies for textView
+          "listings",
+          "setspace",
+          "caption",
+          "texPreview")
 
 pkginstall(pkgs)
 
