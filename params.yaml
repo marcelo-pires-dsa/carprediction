@@ -1,2 +1,10 @@
 source_data_file: .\data\cardetails-v4.csv
 target_data_file: .\data\cardetails-clean.csv
+
+#Plots and summary params
+dataset_summary: dataset_summary
+price_plot_name: price_x_kilometer.png
+linear_model_summary: lm_model_summary
+
+#Modeling
+model_name: carprice-ols.rds

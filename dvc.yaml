@@ -1,6 +1,8 @@
 stages:
   install-packages:
-    cmd: Rscript.exe ./install.R
+    cmd:
+      - Rscript.exe ./install.R
+      -  Rscript.exe ./install.dev.R
     deps:
       - ./install.R
       - ./install.dev.R
@@ -12,3 +14,32 @@ stages:
     deps:
       - .\pre-proccess.R
       - .\data\cardetails-v4.csv
+  data-analysis:
+    cmd: Rscript.exe .\analysis.R ${dataset_summary} ${price_plot_name}
+    params:
+      - dataset_summary
+      - price_plot_name
+    deps:
+      - .\data\cardetails-clean.csv
+      - .\analysis.R
+  train-ols-model:
+    cmd: Rscript.exe ./train.R
+    params:
+      - model_name
+    deps:
+      - ./train.R
+    metrics:
+      - metrics.yaml
+    outs:
+      - output/models/${model_name}:
+          cache: false
+artifacts:
+  linear-regression:
+    path: output/models/${model_name}
+    type: model
+    desc: 'OLS model for car price'
+    labels:
+      - carprice
+      - regression
+    meta:
+      framework: lm

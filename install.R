@@ -42,8 +42,10 @@ pkgs <- c("plotly", #plataforma gráfica
           "listings",
           "setspace",
           "caption",
-          "texPreview")
+          "texPreview",
+          "ggcorplot",
+           "jsonlite")
 
 pkginstall(pkgs)
 
-tinytex::install_tinytex()
+#tinytex::install_tinytex()

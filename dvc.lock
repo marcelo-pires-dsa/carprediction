@@ -13,3 +13,14 @@ stages:
       params.yaml:
         source_data_file: .\data\cardetails-v4.csv
         target_data_file: .\data\cardetails-clean.csv
+  install-packages:
+    cmd: Rscript.exe ./install.R
+    deps:
+    - path: ./install.R
+      hash: md5
+      md5: 2028dd058ae2d94c450214335af589fc
+      size: 1508
+    - path: ./install.dev.R
+      hash: md5
+      md5: 3bd43ecbcb7a7d6bbee62a789b03a874
+      size: 179
