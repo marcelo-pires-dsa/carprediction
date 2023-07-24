@@ -1,0 +1,61 @@
+name: CML
+on: push
+permissions:
+  contents: write
+  pull_requests: write
+  id-token: write
+jobs:
+  deploy-runner:
+    if: github.actor == 'iterative-studio[bot]'
+    environment: cloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: iterative/setup-cml@v1
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ""
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Create Runner
+        env:
+          REPO_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        run: |
+          cml runner launch --single \
+            --labels=cml \
+            --cloud=aws \
+            --cloud-region=us-west \
+            --cloud-type=m
+  runner-job:
+    needs: deploy-runner
+    environment: cloud
+    runs-on: [ self-hosted, cml ]
+    container: iterativeai/cml:0-dvc2-base1
+    steps:
+      - uses: actions/checkout@v3
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ""
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: training
+        env:
+          REPO_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        run: |
+          # Setup project
+          pip install -r requirements.txt
+
+          cml ci --fetch-depth 0
+
+          dvc exp run --pull --allow-missing
+
+          dvc push
+
+          cml pr --squash --skip-ci .
+
+          echo "## Metrics" >> report.md
+          dvc metrics diff main --md >> report.md
+          echo "## Params" >> report.md
+          dvc params diff main --md >> report.md
+
+          cml comment create --pr report.md
