@@ -1,5 +1,5 @@
 stages:
-  install-pakages:
+  install-packages:
     cmd: Rscript.exe ./install.R
     deps:
       - ./install.R
