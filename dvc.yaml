@@ -1,0 +1,14 @@
+stages:
+  install-pakages:
+    cmd: Rscript.exe ./install.R
+    deps:
+      - ./install.R
+      - ./install.dev.R
+  preprocess:
+    cmd: Rscript.exe .\pre-proccess.R ${source_data_file} ${target_data_file}
+    params:
+      - source_data_file 
+      - target_data_file
+    deps:
+      - .\pre-proccess.R
+      - .\data\cardetails-v4.csv
