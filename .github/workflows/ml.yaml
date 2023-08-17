@@ -13,4 +13,4 @@ jobs:
       - name: Install dependencies
         run: pip install neptune
       - name: Run your Python script
-        run: python ../netptune.py
+        run: python ../neptune.py
