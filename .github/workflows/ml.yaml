@@ -16,4 +16,4 @@ jobs:
         run: |
           pwd
           ls -l
-          python ./neptune.py
+          python ./check-config.py
