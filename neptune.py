@@ -2,7 +2,7 @@ import neptune
 
 run = neptune.init_run(
     api_token=os.getenv("NEPTUNE_API_TOKEN"),
-    project="project='marcpires--dsa/car-price-prediction",
+    project="marcpires--dsa/car-price-prediction",
 )
 
 
