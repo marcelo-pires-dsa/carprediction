@@ -1,8 +1,7 @@
 # Car price prediction
 
-Este projeto têm por objetivo a criação de um modelo para a previsão da data e hora estimada do fechamento de um chamado, baseado nos atributos dados.
+Este projeto têm por objetivo a estimação de vários modelos para a previsão do valor de um automóvel. Será aplicado tanto os conceitos vistos no MBA em Datascience da USP/ESALQ, bem como tópicos de MLOps
 
-Aplicação de **Análise factorial por componentes principais** (PCA) as notas de alunos
 
 ## Requirements
 - R 4.2.2
