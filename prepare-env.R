@@ -14,3 +14,5 @@ neptune_install()
 
 renv::init
 renv::snapshot()
+
+renv::snapshot()

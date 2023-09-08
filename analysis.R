@@ -27,7 +27,7 @@ dataset <- "./data/cardetails-clean.csv"
 # Track dataset
 neptune_track_files(run["artifacts/datasets"], dataset)
 
-neptune_add(run["sys/tags"], ["lm", "testing"])
+#neptune_add(run["sys/tags"], ["lm", "testing"])
 
 # load dataset
 car_dataset <- read.csv(dataset)
@@ -36,6 +36,12 @@ features <- c("year", "kilometer","price")
 
 selected_features <- car_dataset %>% 
   select(all_of(features))
+
+#Fix histogram
+#price_hist <- histogram(selected_features, point_x = selected_features$price,
+#             label_x = "Year", label_y = "Price",
+#             plot_title = "Car prices")
+
 
 # Calcula a correlação entre as variáveis
 corr <- cor(selected_features)
@@ -58,10 +64,10 @@ glimpse(car_dataset)
 #car_sample <- head(car_dataset, n = 120)
 
 # Summary of dataset
-dataset_summary <- summary(car_dataset)
+dataset_summary <- summary(selected_features)
 
 # Save the dataset summary in the ouput folder
-capture.output(dataset_summary, file = "./output/dataset_summary")
+capture.output(dataset_summary, file = "./output/selected-features-dataset_summary")
 
 # Correlation Matrix between variables
 
@@ -72,11 +78,11 @@ capture.output(dataset_summary, file = "./output/dataset_summary")
 #savePlot(histo, filename = "./plots/car_price_data_disttribution.png", type = "png")
 
 # Coefficient of determination for the plot title
-R2 <- paste("R squared:", round(((cor(car_dataset$price, car_dataset$kilometer))^2),4))
+R2 <- paste("R squared:", round(((cor(selected_features$price, selected_features$year))^2),4))
 
 # Verify distribution of dependent variable
-pricekm_plot <- scatter_plot(car_dataset,point_x = car_dataset$kilometer,
-                           point_y = car_dataset$price,
+pricekm_plot <- scatter_plot(car_dataset,point_x = selected_features$year,
+                           point_y = selected_features$price,
                            label_x = "Kilometer",
                            label_y = "Price", 
                            plot_title = paste(R2, "Price vs Kilometers"),
@@ -93,14 +99,15 @@ ggsave(filename = "car_price_y_distribution.png", plot = pricekm_plot,
 
 #Estimate an lm (Ordinary Linear Regression) model (price ~ year)
 lm_price_model <- 
-    linear_red() %>% 
+    linear_reg() %>% 
       set_engine("lm")
 
 lm_price_fit <- lm_price_model %>% fit(price ~ year, data = selected_features)
 
-lm_price_fit
-  
-plot(lm_price_fit)
+lm_price_fit %>% extract_fit_engine() %>% summary()
+
+# Summary  info on model components
+tidy(lm_price_fit)
 
 anova(lm_price_fit)
 
@@ -112,8 +119,10 @@ summary(lm_price_fit)
 
 # Predict
 
-new_values <- data.frame(year = 2023)
-predict(lm_price_fit,new_values)
+new_values <- data.frame(year = 2022)
+predict(lm_price_fit,new_data = new_values)
+
+car_dataset %>% select(price, year) 
 
 
 
