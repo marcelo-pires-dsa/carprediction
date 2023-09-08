@@ -1,12 +1,25 @@
+library(tidyverse)
+library(ggcorrplot)
+
 source("./R/helpers.R")
 source("./R/plots.R")
 
 # Get arguments from command line
 args <- commandArgs(trailingOnly = T)
 
-library(tidyverse)
 # load dataset
 car_dataset <- read.csv("./data/cardetails-clean.csv")
+
+features <- c("year", "kilometer","price")
+
+selected_features <- car_dataset %>% 
+  select(all_of(features))
+
+# Calcula a correlação entre as variáveis
+corr <- cor(selected_features)
+
+# Exibe a matrix de correçalação
+ggcorrplot(corr)
 
 # Dataset structure
 str(car_dataset)
@@ -20,6 +33,9 @@ dataset_summary <- summary(car_dataset)
 
 # Save the dataset summary in the ouput folder
 capture.output(dataset_summary, file = "./output/dataset_summary")
+
+# Correlation Matrix between variables
+
 
 #TODO: Check error below
 # Error stop("no such device") : 

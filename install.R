@@ -30,7 +30,7 @@ pkgs <- c("plotly", #plataforma gráfica
           "emojifont",
           "beepr",
           "Rcpp",
-          "equatiomatic",
+         # "equatiomatic", # Arquived from CRAN
           "reshape2", #função 'melt'
           "PerformanceAnalytics", #função 'chart.Correlation' para plotagem
           "psych", #elaboração da fatorial e estatísticas
@@ -41,11 +41,11 @@ pkgs <- c("plotly", #plataforma gráfica
           "validate", # Data validation
           "rmarkdown",
           "tinytex",
-          "multirow", # Dependencies for textView
-          "listings",
-          "setspace",
-          "caption",
-          "texPreview",
+         # "multirow", # Dependencies for textView
+         # "listings",
+         # "setspace",
+         # "caption",
+         # "texPreview", # Removed from CRAN due fixes not sent
           "ggcorrplot",
           "jsonlite")
 
