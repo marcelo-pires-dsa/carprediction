@@ -1,8 +1,11 @@
+library(renv)
+
 source("./R/pkginstall.R")
 
 # Vector with packages to install
 pkgs <- c("plotly", #plataforma gráfica
-          "tidyverse", #carregar outros pacotes do R
+          "tidyverse", #carregar outros pacotes do R,
+          "tidymodels",
           "ggrepel", #geoms de texto e rótulo para 'ggplot2' que ajudam a
           #evitar sobreposição de textos
           "fastDummies",
@@ -43,9 +46,11 @@ pkgs <- c("plotly", #plataforma gráfica
           "setspace",
           "caption",
           "texPreview",
-          "ggcorplot",
-           "jsonlite")
+          "ggcorrplot",
+          "jsonlite")
 
 pkginstall(pkgs)
+
+renv::snapshot()
 
 #tinytex::install_tinytex()
